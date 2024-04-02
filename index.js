@@ -4,29 +4,30 @@
 //folositi call,apply si bind astfel ca chemarea metodei dintr-un 
 //obiect sa afiseze proprietatea din altul.
 //Ex1.1-1.2
-//const person = {
-   // fullName: function() {
-      //  return this.firstName + " " + this.lastName
-    //}
-//}
-//const person1 = {
-    //firstName:"Alex",
-    //lastName:"Duglas"
-//}
-//const person2 = {
-   // firstName:"Dany",
-   // lastName:"Moor"
-//}
-//const person3 = {
-    //firstName:"John",
-    //lastName:"Travolta"
-//}
-////console.log( person.fullName.call(person1) )
-//console.log( person.fullName.call(person2) )
-//console.log( person.fullName.call(person3) )
-//Node index Alex Duglas
- //            Dany Moor
- //            John Travolta
+const person = {
+    fullName: function() {
+        return this.firstName + " " + this.lastName
+    }
+}
+const person1 = {
+    firstName:"Michael",
+    lastName:"Duglas"
+}
+const person2 = {
+    firstName:"Dany",
+    lastName:"Moor"
+}
+const person3 = {
+    firstName:"John",
+    lastName:"Travolta"
+}
+console.log( person.fullName.call(person1) )
+console.log( person.fullName.call(person2) )
+console.log( person.fullName.call(person3) )
+
+//Node index :Michael Duglas  Dany Moor  John Travolta
+ 
+
 //Ex1.3
 const car = {
     model: 'Fiat',
@@ -38,20 +39,21 @@ const car = {
 const anotherCar = {
     model: 'BMW',
     year: 2020
-    //showModel:function(){
-        //console.log(this.model)
+    showModel:function(){
+        console.log(this.model)
     }
-//}
-//anotherCar.showModel()
+}
+anotherCar.showModel()
 //Node index 'BMW'
 
-//car.showModel.call(anotherCar, 'black', 'metan')
+car.showModel.call(anotherCar, 'black', 'metan')
 //Node index:BMW black metan
-//car.showModel.apply(anotherCar, ['black', 'metan'])
+
+car.showModel.apply(anotherCar, ['black', 'metan'])
 //Node index : BMW black metan
 
-//const modelShower = car.showModel.bind(anotherCar)
-//modelShower('green', 'diesel')
+const modelShower = car.showModel.bind(anotherCar)
+modelShower('green', 'diesel')
 //Node index : BMW green diesel
 
 
@@ -62,19 +64,20 @@ const anotherCar = {
 //atribut afecteaza obiectul(atributul writable-false ,nu permite
 //de schimbat value pentru un anumit key a obiectului.
 
-//const person = {
-   // name: 'Dany',
-  //  age: 28
-//}
-//Object.defineProperty(person, 'height' ,{
-    //value: 'hight',
-   // writable: false,
-   // enumerable: true,
-   // configurable: true,
+const person = {
+    name: 'Dany',
+    age: 28
+}
+Object.defineProperty(person, 'height' ,{
+    value: 'hight',
+    writable: false,
+    enumerable: true,
+    configurable: true,
 
-//})
-//person.height = 'bass'
-//console.log(person)
+})
+person.height = 'bass'
+/console.log(person)
+
 //Node index:name: 'Dany'.age:28, height:'hight'
 
 
@@ -93,4 +96,4 @@ Object.preventExtensions(person)
 person.city = 'Lima'
 console.log(person)
 
-
+//Node index:name: 'John', age: 18, id: 28282828
